@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tavoiteseuranta</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h1>Tavoiteseuranta 🎯</h1>
+
+      <div class="input-area">
+        <input type="text" id="goal-input" placeholder="Kirjoita uusi tavoite...">
+        <input type="date" id="goal-date">
+        <button id="add-btn">Lisää</button>
+      </div>
+
+      <ul id="goal-list"></ul>
+    </div>
+
+    <div class="right">
+      <h2>Edistyminen ✅</h2>
+      <canvas id="goalChart"></canvas>
+      <p id="reminder"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px;
+}
+
+.container {
+  display: flex;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 900px;
+}
+
+.left, .right {
+  padding: 30px;
+  flex: 1;
+}
+
+.left {
+  border-right: 2px solid #eee;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.input-area {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+#goal-input, #goal-date {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#add-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#add-btn:hover {
+  background-color: #45a049;
+}
+
+#goal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.goal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.goal span {
+  flex: 1;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #777;
+}
+
+.goal-date {
+  font-size: 0.8em;
+  color: #888;
+}
+
+button.action {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1em;
+}
+
+.right canvas {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+#reminder {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
