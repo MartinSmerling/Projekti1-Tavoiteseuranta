@@ -5,7 +5,6 @@ const goalList = document.getElementById("goal-list");
 const reminderText = document.getElementById("reminder");
 
 let goals = JSON.parse(localStorage.getItem("goals")) || [];
-
 let chart;
 
 function saveGoals() {
@@ -15,7 +14,6 @@ function saveGoals() {
 function updateChart() {
   const done = goals.filter(g => g.completed).length;
   const pending = goals.length - done;
-
   if (chart) chart.destroy();
   const ctx = document.getElementById("goalChart").getContext("2d");
   chart = new Chart(ctx, {
@@ -28,23 +26,17 @@ function updateChart() {
         borderWidth: 0
       }]
     },
-    options: {
-      plugins: {
-        legend: { position: "bottom" }
-      }
-    }
+    options: { plugins: { legend: { position: "bottom" } } }
   });
 }
 
 function renderGoals() {
   goalList.innerHTML = "";
   let reminder = "";
-
   goals.forEach((goal, index) => {
     const li = document.createElement("li");
     li.classList.add("goal");
     if (goal.completed) li.classList.add("completed");
-
     const dueDate = new Date(goal.date);
     const today = new Date();
     let dateColor = "#888";
@@ -52,7 +44,7 @@ function renderGoals() {
     if (!goal.completed && dueDate < today) {
       dateColor = "red";
       reminder = "⚠️ Sinulla on vanhentuneita tavoitteita!";
-    } else if (!goal.completed && (dueDate - today) / (1000 * 60 * 60 * 24) <= 2) {
+    } else if (!goal.completed && (dueDate - today)/(1000*60*60*24) <= 2) {
       dateColor = "orange";
     } else if (goal.completed) {
       dateColor = "green";
@@ -68,7 +60,6 @@ function renderGoals() {
     `;
     goalList.appendChild(li);
   });
-
   reminderText.textContent = reminder;
   updateChart();
 }
@@ -76,12 +67,10 @@ function renderGoals() {
 function addGoal() {
   const text = input.value.trim();
   const date = dateInput.value;
-
   if (text === "" || date === "") return alert("Täytä tavoite ja päivämäärä!");
   goals.push({ text, date, completed: false });
   input.value = "";
   dateInput.value = "";
-
   saveGoals();
   renderGoals();
 }
@@ -102,16 +91,12 @@ addBtn.addEventListener("click", addGoal);
 renderGoals();
 
 // 🔔 Muistutusominaisuus
-if (Notification.permission !== "denied") {
-  Notification.requestPermission();
-}
+if (Notification.permission !== "denied") Notification.requestPermission();
 
 function checkReminders() {
   const overdue = goals.filter(g => !g.completed && new Date(g.date) < new Date());
   if (overdue.length > 0 && Notification.permission === "granted") {
-    new Notification("Tavoiteseuranta", {
-      body: `Sinulla on ${overdue.length} vanhentunutta tavoitetta!`,
-    });
+    new Notification("Tavoiteseuranta", { body: `Sinulla on ${overdue.length} vanhentunutta tavoitetta!` });
   }
 }
 
